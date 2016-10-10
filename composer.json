@@ -1,0 +1,22 @@
+{
+  "name": "onvardgmbh/wp-helper",
+  "description": "Wordpress helper functions",
+  "keywords": [
+    "wordpress",
+    "onvard",
+    "helper"
+  ],
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "André Schwarzer",
+      "email": "schwarzer@onvard.de"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Onvardgmbh\\": "/"
+    }
+  }
+}
