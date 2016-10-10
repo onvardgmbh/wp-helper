@@ -4,28 +4,26 @@ namespace Onvardgmbh;
 /**
  * Wordpress helper class
  */
-class WpHelper
-{
-    /**
-     * ASCII escape a string.
-     * Can be used to obfuscate email addresses.
-     *
-     * @since 0.0.1
-     * @author André Schwarzer <schwarzer@onvard.de>
-     *
-     * @param String $string
-     *
-     * @return String
-     */
-    public static function ascii_esc_string($string)
-    {
-        $return = '';
-        foreach (str_split($string) as $char) {
-            $return .= '&#' . ord($char) . ';';
-        }
+class WpHelper {
+	/**
+	 * ASCII escape a string.
+	 * Can be used to obfuscate email addresses.
+	 *
+	 * @since 0.0.1
+	 * @author André Schwarzer <schwarzer@onvard.de>
+	 *
+	 * @param String $string
+	 *
+	 * @return String
+	 */
+	public static function asciiEscString( $string ) {
+		$return = '';
+		foreach ( str_split( $string ) as $char ) {
+			$return .= '&#' . ord( $char ) . ';';
+		}
 
-        return $return;
-    }
+		return $return;
+	}
 
 	/**
 	 * Get excerpt from string. Auto-removes Wordpress shortcodes.
@@ -41,24 +39,30 @@ class WpHelper
 	 *
 	 * @return String excerpt
 	 */
-	public static function excerpt_string($string, $startPos=0, $maxLength=100, $stripTags = false, $addHellip = true) {
-		if(strlen($string) > $maxLength) {
-			$excerpt   = substr($string, $startPos, $maxLength-3);
-			$lastSpace = strrpos($excerpt, ' ');
-			$excerpt   = substr($excerpt, 0, $lastSpace);
+	public static function excerptString(
+		$string,
+		$startPos = 0,
+		$maxLength = 100,
+		$stripTags = false,
+		$addHellip = true
+	) {
+		if ( strlen( $string ) > $maxLength ) {
+			$excerpt = substr( $string, $startPos, $maxLength - 3 );
+			$lastSpace = strrpos( $excerpt, ' ' );
+			$excerpt = substr( $excerpt, 0, $lastSpace );
 		} else {
 			$excerpt = $string;
 		}
 
-		if($stripTags) {
-			$excerpt = strip_tags($excerpt, '<p><br><br/>');
-			$excerpt = preg_replace('/(class|style)=".*?"/', '', $excerpt);
+		if ( $stripTags ) {
+			$excerpt = strip_tags( $excerpt, '<p><br><br/>' );
+			$excerpt = preg_replace( '/(class|style)=".*?"/', '', $excerpt );
 		}
-		if($addHellip) {
-			$excerpt  .= '&hellip;';
+		if ( $addHellip ) {
+			$excerpt .= '&hellip;';
 		}
 
 		// @see https://github.com/WordPress/WordPress/blob/master/wp-includes/shortcodes.php#L596
-		return strip_shortcodes($excerpt);
+		return strip_shortcodes( $excerpt );
 	}
 }
