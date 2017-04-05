@@ -11,10 +11,6 @@
   "type": "library",
   "authors": [
     {
-      "name": "André Schwarzer",
-      "email": "schwarzer@onvard.de"
-    },
-    {
       "name": "Galdor Takacs",
       "email": "galdor.takacs@gmail.com"
     }
