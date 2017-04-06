@@ -31,7 +31,6 @@ class Svg
      * @return mixed
      */
     public static function fixMime($data = null, $file = null, $filename = null, $mimes = null) {
-        error_log('Called Svg::fixMime('.var_export([$data, $file, $filename, $mimes], true));
         $ext = isset($data['ext']) ? $data['ext'] : '';
         if (strlen($ext) < 1) {
             $ext = strtolower(end(explode('.', $filename)));
@@ -64,7 +63,7 @@ class Svg
 
             $sizes = [];
 
-            foreach ($possible_sizes as $size) {
+            foreach ($possible_sizes as $size => $string) {
                 $sizes[$size] = [
                     'height'      => 2000,
                     'width'       => 2000,
