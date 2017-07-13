@@ -33,15 +33,17 @@ class WpMenu
      * Transform a navigational menu to it's tree structure
      *
      * @uses  buildTree()
-     * @uses  wp_get_nav_menu_items()
      *
-     * @param  String $menud_id
+     * @param  String $location slug of menu
      *
-     * @return array $tree
+     * @return array $items
      */
-    public static function getMenuAsArray($location): array
+    public static function getMenuAsArray(string $location): array
     {
         $locations = get_nav_menu_locations();
+        if(empty($locations[$location])) {
+            return [];
+        }
         $menu      = get_term($locations[$location], 'nav_menu');
         $items     = wp_get_nav_menu_items($menu->term_id) ?: [];
 
