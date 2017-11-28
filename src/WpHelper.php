@@ -1,5 +1,5 @@
 <?php
-namespace Onvardgmbh;
+namespace Onvardgmbh\WpHelper;
 
 /**
  * Wordpress helper class
