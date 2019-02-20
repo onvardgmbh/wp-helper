@@ -109,4 +109,23 @@ class WpHelper
         }
         return (int) round($size);
     }
+
+    /**
+     * Get the excerpt for a post outside the loop.
+     * From <https://wordpress.stackexchange.com/a/163091>.
+     */
+    public static function getExcerpt(int $postId): string
+    {
+        global $post;
+        $originalPost = $post;
+        $post = get_post($postId);
+        setup_postdata($post);
+
+        $excerpt = get_the_excerpt();
+
+        wp_reset_postdata();
+        $post = $originalPost;
+
+        return $excerpt;
+    }
 }
