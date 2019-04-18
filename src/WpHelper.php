@@ -94,6 +94,21 @@ class WpHelper
     }
 
     /**
+     * Filter an array of posts by status.
+     *
+     * @param $posts array - Array of posts to filter
+     * @param $stati array - Array of strings, listing the stati that that should not be filtered out
+     *
+     * @return array - The posts whose status is one of the specified ones
+     */
+    public static function filterStatusIn(array $stati, array $posts): array
+    {
+        return array_filter($posts, function ($post) use ($stati) {
+            return in_array(get_post_status(is_string($post) ? (int) $post : $post['id']), $stati);
+        });
+    }
+
+    /**
      * Parses the ini filesize string and returns the number of bytes
      * @see https://stackoverflow.com/questions/13076480/php-get-actual-maximum-upload-size
      *
